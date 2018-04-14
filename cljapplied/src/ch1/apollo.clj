@@ -36,3 +36,40 @@
                            :lm-name "Eagle"
                            :orbits 30
                            :evas 1))
+
+(defn euclidean-norm [ecc-vector] ecc-vector)
+
+;; user> (ch1.apollo/euclidean-norm 3)
+
+(defrecord Planet [name
+                   moons
+                   volume
+                   mass
+                   aphelion
+                   perihelion
+                   orbital-eccentricity
+                   ])
+
+;; user> (->Planet "Earth" 1 1.08321E12 5.97219E24 152098232 147098290 3)
+
+(defn make-planet
+  "Make a planet from field values and an eccentricity vector"
+  [name
+   moons
+   volume
+   mass
+   aphelion
+   perihelion
+   ecc-vector]
+  (->Planet
+   name moons volume mass aphelion perihelion
+   (ch1.apollo/euclidean-norm ecc-vector)))
+
+;; (ch1.apollo/make-planet "Earth"
+;;                         1
+;;                         1.08321e12
+;;                         5.97219e24
+;;                         152098232
+;;                         147098290
+;;                         3
+;;                         )
