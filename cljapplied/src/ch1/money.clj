@@ -35,3 +35,12 @@
    (reduce +$ m1 (conj monies m2))))
 
 (defn *$ [m n] (->Money (* n (:amount m)) (:currency m)))
+
+(defn make-money
+  ([] (make-money 0))
+  ([amount] (make-money amount :usd))
+  ([amount currency] (->Money amount currency)))
+
+;; user> (ch1.money/make-money)
+;; user> (ch1.money/make-money 1)
+;; user> (ch1.money/make-money 5 (:eur ch1.money/currencies)
