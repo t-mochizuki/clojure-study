@@ -30,3 +30,6 @@
 ;;                     :mass 5.97219E24
 ;;                     :aphelion 152098232
 ;;                     :perihelion 147098290})
+
+;; user> (get (->Planet "Earth" 1 1.08321E1 5.97219E24 152098232 147098290) :name)
+;; user> (:name (->Planet "Earth" 1 1.08321E1 5.97219E24 152098232 147098290))
