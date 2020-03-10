@@ -1,9 +1,10 @@
 (defn solve [a b cnt]
   (if (>= a b)
     (inc cnt)
-    (if (= cnt 0)
-      (solve (dec a) (- b a) (inc cnt))
-      (solve a (- b a) (inc cnt)))))
+    (solve
+      (if (= cnt 0) (dec a) a)
+      (- b a)
+      (inc cnt))))
 
 (let [a (int (read))
       b (int (read))]
