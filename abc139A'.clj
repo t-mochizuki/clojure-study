@@ -3,7 +3,7 @@
   ([s t acc]
    (if (nil? s)
      acc
-     (solve (next s)
+     (recur (next s)
             (next t)
             (if (= (first s) (first t))
               (inc acc)
