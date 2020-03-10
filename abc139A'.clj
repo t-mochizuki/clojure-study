@@ -3,8 +3,10 @@
   ([s t acc]
    (if (nil? s)
      acc
-     (if (= (first s) (first t))
-       (solve (next s) (next t) (inc acc))
-       (solve (next s) (next t) acc)))))
+     (solve (next s)
+            (next t)
+            (if (= (first s) (first t))
+              (inc acc)
+              acc)))))
 
 (println (solve (str (read)) (str (read))))
