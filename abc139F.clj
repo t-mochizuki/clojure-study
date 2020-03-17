@@ -56,6 +56,10 @@
                         (sum-v v n2)
                         (sum-v (sum-v v n1) n2)]))))
 
+(defn rotate90 [v]
+  {:x (- (:y v))
+   :y (:x v)})
+
 (def zero-c
   {:positive-dot {:x 0 :y 0}
    :negative-dot {:x 0 :y 0}
@@ -65,7 +69,8 @@
 (defn solve []
   (let [n (Integer/parseInt (read-line))
         ls (readlines n [])
-        vs (map readline ls)]
+        vs (map readline ls)
+        vs' (flatten (map #(take 4 (iterate rotate90 %)) vs))]
     (println
       (Math/sqrt
         (apply
@@ -73,6 +78,6 @@
           (map (fn [v1]
                  (let [c (classify v1 vs zero-c)]
                    (variety c)))
-               vs))))))
+               vs'))))))
 
 (solve)
