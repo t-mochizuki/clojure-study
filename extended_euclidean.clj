@@ -14,3 +14,14 @@
 ;; (+ (* 240 -3) (* 66 11)) ;; => 6
 ;; (extended-euclidean 520 221) ;; => [3 -7]
 ;; (+ (* 520 3) (* 221 -7)) ;; => 13
+
+(defn inverse
+  "Returns the inverse of a value A in modulo N."
+  [a n]
+  (let [[x y] (extended-euclidean a n)
+        gcd (+ (* a x) (* n y))]
+    (if (= gcd 1)
+      (mod x n))))
+
+;; (inverse 5 7) ;; => 3
+;; (inverse 3 3016) ;; => 2011
