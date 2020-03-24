@@ -6,26 +6,28 @@
   (map #(Long/parseLong %)
        (line-seq (clojure.java.io/reader *in*))))
 
-(defn p [^java.io.PrintWriter f ^java.lang.Long x]
-  (.println f (if (> x 0) "Yes" "No")))
+(def ^java.io.PrintWriter fout
+  (java.io.PrintWriter. (clojure.java.io/writer *out*)))
 
-(defn solve [as f n k i v]
+(defn p [^java.lang.Long x]
+  (.println fout (if (> x 0) "Yes" "No")))
+
+(defn solve [as n k i v]
   (if (empty? as)
     (if (= n i)
-      (p f (+ k v))
+      (p (+ k v))
       (do
-        (p f (+ k v))
-        (recur as f n k (inc i) 0)))
+        (p (+ k v))
+        (recur as n k (inc i) 0)))
     (if (= (first as) i)
-      (recur (next as) f n k i (inc v))
+      (recur (next as) n k i (inc v))
       (do
-        (p f (+ k v))
-        (recur as f n k (inc i) 0)))))
+        (p (+ k v))
+        (recur as n k (inc i) 0)))))
 
 (let [[n k q] (readline (read-line))
       as (sort (readlines))
-      k' (- k q)
-      fout (java.io.PrintWriter. (clojure.java.io/writer *out*))]
-  (do
-    (solve as fout n k' 1 0)
-    (.flush fout)))
+      k' (- k q)]
+  (solve as n k' 1 0))
+
+(.flush fout)
