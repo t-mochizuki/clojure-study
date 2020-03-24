@@ -25,3 +25,19 @@
 
 ;; (inverse 5 7) ;; => 3
 ;; (inverse 3 3016) ;; => 2011
+
+(defn chinese-remainder-theorem
+  "Returns x and m; x = a_i mod m_i, m = m_1 * m_2 * ... * m_k (i = 1,2,...,k)."
+  [a as m ms]
+  (if (empty? as)
+    [a m]
+    (let [a' (+ a (* m
+                     (inverse m (first ms))
+                     (- (first as) a)))
+          m' (* m (first ms))]
+      (chinese-remainder-theorem (if (> a' 0) a' (+ a' m'))
+                                 (next as)
+                                 m'
+                                 (next ms)))))
+
+;; (chinese-remainder-theorem 0 [1 2 3] 1 [2 3 5]) ;; => [23 30]
