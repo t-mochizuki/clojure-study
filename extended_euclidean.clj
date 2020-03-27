@@ -35,9 +35,10 @@
                      (inverse m (first ms))
                      (- (first as) a)))
           m' (* m (first ms))]
-      (chinese-remainder-theorem (if (> a' 0) a' (+ a' m'))
+      (chinese-remainder-theorem (mod (if (> a' 0) a' (+ a' m')) m')
                                  (next as)
                                  m'
                                  (next ms)))))
 
 ;; (chinese-remainder-theorem 0 [1 2 3] 1 [2 3 5]) ;; => [23 30]
+;; (chinese-remainder-theorem 0 [3 5] 1 [7 11]) ;; => [38 77]
