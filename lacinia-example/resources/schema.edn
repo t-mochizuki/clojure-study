@@ -1,0 +1,5 @@
+{:queries
+ {:numbers
+  {:type (list Int)
+   :description "Access a NumberRepo, if it exists."
+   :resolve :query/numbers}}}
