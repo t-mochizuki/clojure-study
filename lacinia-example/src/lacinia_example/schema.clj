@@ -8,7 +8,9 @@
 (defn resolver-map
   []
   {:query/numbers (fn [context args value]
-                    [2 3 4])})
+                    [2 3 4])
+   :query/products (fn [context args value]
+                     nil)})
 
 (defn load-schema
   []

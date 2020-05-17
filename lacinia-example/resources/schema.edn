@@ -1,5 +1,23 @@
-{:queries
+{:objects
+ {:Picture
+  {:fields
+   {:width {:type (non-null Int)}
+    :height {:type (non-null Int)}
+    :url {:type String}}}
+  :Product
+  {:fields
+   {:id {:type (non-null String)}
+    :name {:type (non-null String)}
+    :description {:type (non-null String)}
+    :picture {:type (non-null Picture)
+              :args
+              {:size {:type Int}}}}}}
+ :queries
  {:numbers
   {:type (list Int)
    :description "Access a NumberRepo, if it exists."
-   :resolve :query/numbers}}}
+   :resolve :query/numbers}
+  :products
+  {:type (list Product)
+   :description "Returns a list of all available products."
+   :resolve :query/products}}}
