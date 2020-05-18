@@ -7,10 +7,16 @@
 
 (defn resolver-map
   []
-  {:query/numbers (fn [context args value]
-                    [2 3 4])
-   :query/products (fn [context args value]
-                     nil)})
+  (let [data (-> (io/resource "data.edn")
+                 slurp
+                 edn/read-string)
+        products-map (->> data
+                          :products)]
+    (do
+      {:query/numbers (fn [context args value]
+                        [2 3 4])
+       :query/products (fn [context args value]
+                         products-map)})))
 
 (defn load-schema
   []
