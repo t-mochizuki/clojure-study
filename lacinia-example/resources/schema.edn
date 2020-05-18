@@ -11,7 +11,8 @@
     :description {:type (non-null String)}
     :picture {:type (non-null Picture)
               :args
-              {:size {:type Int}}}}}}
+              {:size {:type Int}}
+              :resolve :query/picture}}}}
  :queries
  {:numbers
   {:type (list Int)
