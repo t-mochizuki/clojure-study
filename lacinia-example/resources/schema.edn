@@ -20,4 +20,9 @@
   :products
   {:type (list Product)
    :description "Returns a list of all available products."
-   :resolve :query/products}}}
+   :resolve :query/products}
+  :picture
+  {:type (non-null Picture)
+   :args
+   {:size {:type Int}}
+   :resolve :query/picture}}}
